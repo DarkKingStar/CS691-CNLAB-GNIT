@@ -1,0 +1,17 @@
+// Write a c programe to ceate a one directional communication by using pipe within a single process.
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<unistd.h>
+void main(){
+    int fd[2];
+    char buff[30];
+    char *message="I am the legend";
+    if(pipe(fd)==-1){
+        perror("pipe creation failed");
+        exit(0);
+    }
+    write(fd[1],message,30);
+    read(fd[0],buff,30);
+    printf("message : %s\n",buff);
+}
