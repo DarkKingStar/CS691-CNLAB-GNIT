@@ -24,6 +24,6 @@ void main()
 		memset(buff,0,1024);
 		read(clnsock_fd,buff,1024);
 		printf("Received message from server:%s\n",buff);
-		if(strcmp(buff,"OK")==0)break;
+		if(strcmp(buff,"quit")==0)break;
 	}
 }
