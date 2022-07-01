@@ -22,14 +22,15 @@ void main()
 	bind(svrsock_fd,(struct sockaddr *)&svraddr,svraddrlen);
 	while(1)
 	{
-		printf("Waiting for server : \n");
-		recvfrom(svrsock_fd,buff,sizeof(buff),MSG_WAITALL,(struct sockaddr *)&clnaddr,&clnaddrlen);
-		printf("Received data from server : %s\n",buff);
-		if(strcmp(buff,"exit")==0) break;
 		printf("Enter input string for server : ");
 		gets(message);
 		sendto(svrsock_fd,message,sizeof(message),0,(struct sockaddr *)&clnaddr,clnaddrlen);
 		if(strcmp(message,"exit")==0) break;
+		printf("Waiting for server : \n");
+		recvfrom(svrsock_fd,buff,sizeof(buff),MSG_WAITALL,(struct sockaddr *)&clnaddr,&clnaddrlen);
+		printf("Received data from server : %s\n",buff);
+		if(strcmp(buff,"exit")==0) break;
+		
 	}
 }
 --------------------------------------------------------------
